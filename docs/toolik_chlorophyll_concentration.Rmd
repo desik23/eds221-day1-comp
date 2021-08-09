@@ -31,9 +31,15 @@ chlorophyll_plot <- ggplot(data = toolik_chlorophyll,
   geom_point(aes(size = active_chl_a_ug_l), 
              color = "cyan" ,
              alpha = 0.5) +
-  theme_dark()
+  theme_dark() +
+  scale_y_reverse()
 
 chlorophyll_plot
+
+```
+
+```{r}
+ggsave(here::here("figs", "chlorophyll_graph.jpg"), plot = chlorophyll_plot)
 
 ```
 
