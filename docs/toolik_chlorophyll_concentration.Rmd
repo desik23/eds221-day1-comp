@@ -1,0 +1,40 @@
+---
+title: "Toolik Chlorophyll Concentrations"
+author: "Desik Somasundaram"
+date: "8/9/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(janitor)
+library(here)
+library(skimr)
+```
+
+## Read in toolik_chlorophyll.csv as data frame stored as 'toolik_chlorophyll'
+
+```{r}
+
+toolik_chlorophyll <- read_csv(here::here("data", "data-raw", "toolik_chlorophyll.csv"), na= c("."))
+
+toolik_chlorophyll <- toolik_chlorophyll %>% clean_names()
+
+```
+## Create a scatterplot of depth versys chlorophyll A concentration
+
+```{r}
+
+chlorophyll_plot <- ggplot(data = toolik_chlorophyll,
+                           aes(x = active_chl_a_ug_l, y = depth)) +
+  geom_point(aes(size = active_chl_a_ug_l), 
+             color = "cyan" ,
+             alpha = 0.5) +
+  theme_dark()
+
+chlorophyll_plot
+
+```
+
+
